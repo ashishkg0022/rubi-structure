@@ -24,7 +24,7 @@ if matchpy:
 
     import functools, operator
 
-
+def binomial_products(rubi):
     def f1(b, n, x, p):
         return functools.reduce(operator.and_, [ FreeQ(List(b, n, p), x), FreeQ(b, x), FreeQ(n, x), FreeQ(p, x)])
     pattern1 = Pattern(Integral((x_**n_*WC('b', S(1)))**p_, x_),CustomConstraint(f1))
