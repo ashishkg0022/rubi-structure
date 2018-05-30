@@ -212,7 +212,7 @@ def test_1():
 ##x**m (a x+b x**S(3)+c x**S(5))**(p/S(2))*)
 
 
-[x/Sqrt(a*x + b*x**S(3) + c*x**S(5)), x, S(3), (S(2)*x**S(2)*Sqrt(S(1) + (S(2)*c*x**S(2))/(b - Sqrt(b**S(2) - S(4)*a*c)))*Sqrt(S(1) + (S(2)*c*x**S(2))/(b + Sqrt(b**S(2) - S(4)*a*c)))*AppellFS(1)(S(3)/S(4), S(1)/S(2), S(1)/S(2), S(7)/S(4), -((S(2)*c*x**S(2))/(b - Sqrt(b**S(2) - S(4)*a*c))), -((S(2)*c*x**S(2))/(b + Sqrt(b**S(2) - S(4)*a*c)))))/(S(3)*Sqrt(a*x + b*x**S(3) + c*x**S(5)))],
+[x/Sqrt(a*x + b*x**S(3) + c*x**S(5)), x, S(3), (S(2)*x**S(2)*Sqrt(S(1) + (S(2)*c*x**S(2))/(b - Sqrt(b**S(2) - S(4)*a*c)))*Sqrt(S(1) + (S(2)*c*x**S(2))/(b + Sqrt(b**S(2) - S(4)*a*c)))*AppellF1(S(3)/S(4), S(1)/S(2), S(1)/S(2), S(7)/S(4), -((S(2)*c*x**S(2))/(b - Sqrt(b**S(2) - S(4)*a*c))), -((S(2)*c*x**S(2))/(b + Sqrt(b**S(2) - S(4)*a*c)))))/(S(3)*Sqrt(a*x + b*x**S(3) + c*x**S(5)))],
 
 
 ## ::Subsection::Closed:: *)
@@ -266,7 +266,7 @@ def test_1():
 ##x**m (d+e x**S(2))**n (a x+b x**S(3)+c x**S(5))**(p/S(2))*)
 
 
-[x*(d + e*x**S(2))/Sqrt(a*x + b*x**S(3) + c*x**S(5)), x, S(7), (S(2)*d*x**S(2)*Sqrt(S(1) + (S(2)*c*x**S(2))/(b - Sqrt(b**S(2) - S(4)*a*c)))*Sqrt(S(1) + (S(2)*c*x**S(2))/(b + Sqrt(b**S(2) - S(4)*a*c)))*AppellFS(1)(S(3)/S(4), S(1)/S(2), S(1)/S(2), S(7)/S(4), -((S(2)*c*x**S(2))/(b - Sqrt(b**S(2) - S(4)*a*c))), -((S(2)*c*x**S(2))/(b + Sqrt(b**S(2) - S(4)*a*c)))))/(S(3)*Sqrt(a*x + b*x**S(3) + c*x**S(5))) + (S(2)*e*x**S(4)*Sqrt(S(1) + (S(2)*c*x**S(2))/(b - Sqrt(b**S(2) - S(4)*a*c)))*Sqrt(S(1) + (S(2)*c*x**S(2))/(b + Sqrt(b**S(2) - S(4)*a*c)))*AppellFS(1)(S(7)/S(4), S(1)/S(2), S(1)/S(2), S(11)/S(4), -((S(2)*c*x**S(2))/(b - Sqrt(b**S(2) - S(4)*a*c))), -((S(2)*c*x**S(2))/(b + Sqrt(b**S(2) - S(4)*a*c)))))/(S(7)*Sqrt(a*x + b*x**S(3) + c*x**S(5)))],
+[x*(d + e*x**S(2))/Sqrt(a*x + b*x**S(3) + c*x**S(5)), x, S(7), (S(2)*d*x**S(2)*Sqrt(S(1) + (S(2)*c*x**S(2))/(b - Sqrt(b**S(2) - S(4)*a*c)))*Sqrt(S(1) + (S(2)*c*x**S(2))/(b + Sqrt(b**S(2) - S(4)*a*c)))*AppellF1(S(3)/S(4), S(1)/S(2), S(1)/S(2), S(7)/S(4), -((S(2)*c*x**S(2))/(b - Sqrt(b**S(2) - S(4)*a*c))), -((S(2)*c*x**S(2))/(b + Sqrt(b**S(2) - S(4)*a*c)))))/(S(3)*Sqrt(a*x + b*x**S(3) + c*x**S(5))) + (S(2)*e*x**S(4)*Sqrt(S(1) + (S(2)*c*x**S(2))/(b - Sqrt(b**S(2) - S(4)*a*c)))*Sqrt(S(1) + (S(2)*c*x**S(2))/(b + Sqrt(b**S(2) - S(4)*a*c)))*AppellF1(S(7)/S(4), S(1)/S(2), S(1)/S(2), S(11)/S(4), -((S(2)*c*x**S(2))/(b - Sqrt(b**S(2) - S(4)*a*c))), -((S(2)*c*x**S(2))/(b + Sqrt(b**S(2) - S(4)*a*c)))))/(S(7)*Sqrt(a*x + b*x**S(3) + c*x**S(5)))],
 
 
 ## ::Subsection:: *)
@@ -276,13 +276,13 @@ def test_1():
     ]
 
     for i in test:
-    try:
-        r = rubi_integrate(nsimplify(i[0]), i[1])
+	    try:
+	        r = rubi_integrate(nsimplify(i[0]), i[1])
 
-        if len(i) == 5:
-            assert rubi_test(r, i[1], i[3], expand=True, _diff=True, _numerical=True) or rubi_test(r, i[1], i[4], expand=True, _diff=True, _numerical=True)
-        else:
-            assert rubi_test(r, i[1], i[3], expand=True, _diff=True, _numerical=True)
-    except:   
-        print(i)
-        print("Fail************\n")
+	        if len(i) == 5:
+	            assert rubi_test(r, i[1], i[3], expand=True, _diff=True, _numerical=True) or rubi_test(r, i[1], i[4], expand=True, _diff=True, _numerical=True)
+	        else:
+	            assert rubi_test(r, i[1], i[3], expand=True, _diff=True, _numerical=True)
+	    except:   
+	        print(i)
+	        print("Fail************\n")
